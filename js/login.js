@@ -9,6 +9,7 @@ fetch("http://localhost:3000/users")
     function loginUtente(utenti, nomeVal, passwordVal) {
         let esiste = utenti.find(u => u.nome === nomeVal && u.password === passwordVal);
         if (!esiste) {
+            localStorage.setItem("pokemonSalvati", 0);
             let user = JSON.parse(localStorage.getItem("user"));
             let userId = user ? user.id : 0;
             let utente = {
@@ -42,6 +43,7 @@ fetch("http://localhost:3000/users")
                 }
             })
         }else{
+            localStorage.setItem("user", JSON.stringify(esiste));
             let alert = `
                 <div class="alert alert-primary alert-dismissible fade show position-fixed bottom-0 end-0" role="alert">
                     <strong>Ciao ${esiste.nome}!</strong> Stai per essere indirizzato alla pagina dei pokemon.

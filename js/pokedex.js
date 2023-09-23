@@ -1,10 +1,15 @@
 const grigliaPokemon = document.querySelector("#grigliaPokemon");
+const pokedexUtente = document.querySelector("#pokedexUtente");
+let userPokedex = JSON.parse(localStorage.getItem("user"));
+let userPokedexId = userPokedex.id;
 
-fetch("http://localhost:3000/results")
+pokedexUtente.innerHTML = `Pokédex di ${userPokedex.nome}`;
+
+fetch(`http://localhost:3000/users/${userPokedexId}`)
 .then(data =>{return data.json()})
 .then(response =>{
-    
-    response.forEach(pok => {
+
+    response.pokedex.forEach(pok => {
 
         fetch(pok.url)
         .then(data =>{return data.json()})

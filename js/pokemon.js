@@ -1,17 +1,20 @@
 const listaPokemon = document.querySelector("#listaPokemon");
 const alertPokedex = document.querySelector("#alertPokedex");
+const benvenuto = document.querySelector("#benvenuto");
 let counter = 0;
+
 
 let utente = JSON.parse(localStorage.getItem("user"));
 let idUtente = utente.id;
 
+benvenuto.innerHTML = `Benvenuto ${utente.nome}!`;
 
 fetch("https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0")
 .then(data =>{return data.json()})
 .then(response =>{
     // console.log(response);
     response.results.forEach(pokemon => {
-
+        
         fetch(pokemon.url)
         .then(data =>{return data.json()})
         .then(response =>{   
@@ -27,7 +30,7 @@ fetch("https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0")
             btnAggiungi.textContent = "Salva nel pokedex";
 
             btnAggiungi.addEventListener("click", function(){
-                if(counter < 3){
+                if(localStorage.getItem("pokemonSalvati") < 3){
                     //devo fare una post nell'array pokedex in users, ma non conosco l'user che si è loggato alla pagina (lo so solo con localstorage finora)
 
                     fetch("http://localhost:3000/users")
@@ -54,14 +57,15 @@ fetch("https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0")
                                 `;
                                 alertPokedex.innerHTML = alertAggiunto;
     
-                            setTimeout(function() {
-                                alertPokedex.innerHTML = '';
-                            }, 3000);
-                        })
+                                setTimeout(function() {
+                                    alertPokedex.innerHTML = '';
+                                }, 3000);
+                            })
                             
                         } 
-
                     })
+                    counter++;
+                    localStorage.setItem("pokemonSalvati", counter);
                 }else{
                     let alertNonAggiunto = `
                         <div class="alert alert-primary alert-dismissible fade show position-fixed bottom-0 end-0" role="alert">
@@ -71,7 +75,8 @@ fetch("https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0")
                     `;
                     alertPokedex.innerHTML = alertNonAggiunto;
                 }
-                counter++;
+                
+                console.log(counter);
             })
 
             
