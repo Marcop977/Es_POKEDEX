@@ -9,10 +9,15 @@ fetch("http://localhost:3000/users")
     function loginUtente(utenti, nomeVal, passwordVal) {
         let esiste = utenti.find(u => u.nome === nomeVal && u.password === passwordVal);
         if (!esiste) {
+            let user = JSON.parse(localStorage.getItem("user"));
+            let userId = user ? user.id : 0;
             let utente = {
+                id: ++userId,
                 nome: nomeInput.value,
-                password: passwordInput.value
+                password: passwordInput.value,
+                pokedex: []
             };
+            localStorage.setItem("user", JSON.stringify(utente));
             fetch("http://localhost:3000/users", {
                 method: "POST",
                 headers: {

@@ -1,4 +1,5 @@
 const grigliaPokemon = document.querySelector("#grigliaPokemon");
+
 fetch("http://localhost:3000/results")
 .then(data =>{return data.json()})
 .then(response =>{

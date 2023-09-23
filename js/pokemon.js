@@ -2,11 +2,14 @@ const listaPokemon = document.querySelector("#listaPokemon");
 const alertPokedex = document.querySelector("#alertPokedex");
 let counter = 0;
 
+let utente = JSON.parse(localStorage.getItem("user"));
+let idUtente = utente.id;
+
 
 fetch("https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0")
 .then(data =>{return data.json()})
 .then(response =>{
-    console.log(response);
+    // console.log(response);
     response.results.forEach(pokemon => {
 
         fetch(pokemon.url)
@@ -25,26 +28,39 @@ fetch("https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0")
 
             btnAggiungi.addEventListener("click", function(){
                 if(counter < 3){
-                    
-                    fetch("http://localhost:3000/results", {
-                        method: "POST",
-                        headers: {
-                            "Content-type": "application/json"
-                        },
-                        body: JSON.stringify(pokemon)
-                    })
-                    .then(response =>{
-                        let alertAggiunto = `
-                            <div class="alert alert-primary alert-dismissible fade show position-fixed bottom-0 end-0" role="alert">
+                    //devo fare una post nell'array pokedex in users, ma non conosco l'user che si è loggato alla pagina (lo so solo con localstorage finora)
+
+                    fetch("http://localhost:3000/users")
+                    .then(data =>{return data.json()})
+                    .then(arrUtenti =>{
+                        const utente = arrUtenti.find(user => user.id === idUtente);
+                        if (utente){
+
+                            fetch(`http://localhost:3000/users/${idUtente}`, {
+                                method: "PATCH",
+                                headers: {
+                                    "Content-type": "application/json"
+                                },
+                                body: JSON.stringify({
+                                    pokedex: [...utente.pokedex, pokemon]
+                                })
+                            })
+                            .then(promessa =>{
+                                let alertAggiunto = `
+                                <div class="alert alert-primary alert-dismissible fade show position-fixed bottom-0 end-0" role="alert">
                                 <strong>${pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)} aggiunto!</strong>
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                            </div>
-                        `;
-                        alertPokedex.innerHTML = alertAggiunto;
+                                </div>
+                                `;
+                                alertPokedex.innerHTML = alertAggiunto;
+    
+                            setTimeout(function() {
+                                alertPokedex.innerHTML = '';
+                            }, 3000);
+                        })
+                            
+                        } 
 
-                        setTimeout(function() {
-                            alertPokedex.innerHTML = '';
-                        }, 3000);
                     })
                 }else{
                     let alertNonAggiunto = `

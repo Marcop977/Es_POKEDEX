@@ -1,174 +1,23 @@
 {
   "users": [
     {
-      "nome": "dfas",
-      "password": "afds",
-      "id": 1
-    },
-    {
-      "nome": "dfas",
-      "password": "afds",
-      "id": 2
-    },
-    {
+      "id": 1,
       "nome": "aaa",
       "password": "aaa",
-      "id": 3
-    },
-    {
-      "nome": "aaa",
-      "password": "aaa",
-      "id": 4
-    },
-    {
-      "nome": "aaa",
-      "password": "aaa",
-      "id": 5
-    },
-    {
-      "nome": "aaa",
-      "password": "aaa",
-      "id": 6
-    },
-    {
-      "nome": "aaa",
-      "password": "aaa",
-      "id": 7
-    },
-    {
-      "nome": "Mario",
-      "password": "df",
-      "id": 8
-    },
-    {
-      "nome": "Mario",
-      "password": "df",
-      "id": 9
-    },
-    {
-      "nome": "Mario",
-      "password": "df",
-      "id": 10
-    },
-    {
-      "nome": "Mario",
-      "password": "df",
-      "id": 11
-    },
-    {
-      "nome": "aaa",
-      "password": "dscvxz",
-      "id": 12
-    },
-    {
-      "nome": "aaa",
-      "password": "dscvxz",
-      "id": 13
-    },
-    {
-      "nome": "asa",
-      "password": "aaa",
-      "id": 14
-    },
-    {
-      "nome": "sss",
-      "password": "sss",
-      "id": 15
-    },
-    {
-      "nome": "sss",
-      "password": "sss",
-      "id": 16
-    },
-    {
-      "nome": "sssd",
-      "password": "sss",
-      "id": 17
-    },
-    {
-      "nome": "sssd",
-      "password": "sss",
-      "id": 18
-    },
-    {
-      "nome": "fff",
-      "password": "fff",
-      "id": 19
-    },
-    {
-      "nome": "fff",
-      "password": "fff",
-      "id": 20
-    },
-    {
-      "nome": "fff",
-      "password": "fff",
-      "id": 21
-    },
-    {
-      "nome": "fff",
-      "password": "fff",
-      "id": 22
-    },
-    {
-      "nome": "ggg",
-      "password": "ggg",
-      "id": 23
-    },
-    {
-      "nome": "qqq",
-      "password": "qqq",
-      "id": 24
-    },
-    {
-      "nome": "www",
-      "password": "www",
-      "id": 25
-    },
-    {
-      "nome": "eee",
-      "password": "eee",
-      "id": 26
-    },
-    {
-      "nome": "yyy",
-      "password": "yyy",
-      "id": 27
-    },
-    {
-      "nome": "yyy",
-      "password": "yyy",
-      "id": 28
-    },
-    {
-      "nome": "uuu",
-      "password": "uuu",
-      "id": 29
-    },
-    {
-      "nome": "hhh",
-      "password": "hhh",
-      "id": 30
-    },
-    {
-      "nome": "vvv",
-      "password": "vvv",
-      "id": 31
-    },
-    {
-      "nome": "zzz",
-      "password": "zzz",
-      "id": 32
-    },
-    {
-      "nome": "jjj",
-      "password": "jjj",
-      "id": 33
-    },
-    {
-      "nome": "mmm",
-      "password": "mmm",
-      "id": 34
+      "pokedex": [
+        {
+          "name": "bulbasaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/1/"
+        },
+        {
+          "name": "ivysaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/2/"
+        },
+        {
+          "name": "venusaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/3/"
+        }
+      ]
     }
   ]
 }
