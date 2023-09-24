@@ -31,7 +31,7 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                         let cardPokemon = `
                             <div class="card col-3 m-2 text-center d-flex justify-content-center">
                                 <img class="card-img-top w-50 mx-auto py-5" src="${abilita.sprites.other.dream_world.front_default}" alt="Title">
-                                <div class="card-body">
+                                <div class="card-body h-100 d-flex flex-column justify-content-end">
                                     <h4 class="card-title">${pok.name.charAt(0).toUpperCase() + pok.name.slice(1)}</h4>
                                     <p class="card-text">${element.flavor_text}</p>
                                 </div>

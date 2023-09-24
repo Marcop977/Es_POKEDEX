@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">    <title>Document</title>
 </head>
 <body>
 
     <header>
-        <nav class="navbar navbar-dark navbar-expand-lg bg-dark">
+        <nav class="navbar navbar-dark navbar-expand-lg bg-dark" id="navbar">
           <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar"
@@ -28,6 +29,9 @@
                   </li>
                   <li class="nav-item">
                     <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#" id="chiaro-scuro"><i class="fa-solid fa-circle-half-stroke"></i></a>
                   </li>
               </div>
             </div>
@@ -55,5 +59,24 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="./js/login.js"></script>
+
+    <script>
+      const colore = document.querySelector("#chiaro-scuro");
+
+      colore.addEventListener("click", function(){
+        
+        if(document.documentElement.getAttribute("data-bs-theme") == "dark"){
+          document.querySelector("#navbar").classList.remove("bg-dark");
+          document.querySelector("#navbar").classList.add("bg-light");
+          document.documentElement.setAttribute("data-bs-theme", "light");
+        }else{
+          document.querySelector("#navbar").classList.remove("bg-light");
+          document.querySelector("#navbar").classList.add("bg-dark");
+          document.documentElement.setAttribute("data-bs-theme", "dark");
+        }
+
+      })
+
+    </script>
 </body>
 </html>
