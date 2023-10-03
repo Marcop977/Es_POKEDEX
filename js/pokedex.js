@@ -60,8 +60,13 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                     if (marker) {                       //se il marker esiste già, lo rimuove
                         map.removeLayer(marker);
                     }
-            
-                    marker = L.marker([location.y, location.x]).addTo(map)  // imposta il marker sulle coordinate
+                    
+                    const iconaMarker = L.icon({
+                        iconUrl: 'img/1200px-Pokémon_GO_Plus.svg.png',
+                        iconSize: [35, 50],
+                    });
+
+                    marker = L.marker([location.y, location.x], { icon: iconaMarker }).addTo(map);  // imposta il marker sulle coordinate
                     map.setView([location.y, location.x], 13);     //imposta la mappa sulle coordinate
                     
                     const apiKey = 'd97b4d77c47e13daf78490b260c54900'; // Sostituisci con la tua chiave API
@@ -72,14 +77,14 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                     .then(response => response.json())
                     .then(meteo => {
                         console.log(meteo);
-                        const li = document.createElement("li");
-                        li.innerHTML = `
+                        const div = document.createElement("div");
+                        div.innerHTML = `
                             <p>Temperatura: <strong> ${meteo.main.temp} °</strong></p>
                             <p>Cielo: <strong>${meteo.weather[0].description}</strong></p> 
                             <p>Umidità: <strong>${meteo.main.humidity} %</strong></p> 
                             <p>Vento: <strong>${meteo.wind.speed} Km/h</strong></p> 
                         `;
-                        button.parentNode.appendChild(li);
+                        button.parentNode.appendChild(div);
                     })
                 })
 
