@@ -7,72 +7,74 @@
       "pokedex": [
         {
           "name": "bulbasaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/1/"
+          "url": "https://pokeapi.co/api/v2/pokemon/1/",
+          "tipo": "poison",
+          "descrizione": "Alla nascita gli è stato piantato sulla schiena un seme\nraro. La pianta sboccia e cresce con lui."
         },
         {
-          "name": "caterpie",
-          "url": "https://pokeapi.co/api/v2/pokemon/10/"
+          "name": "ivysaur",
+          "url": "https://pokeapi.co/api/v2/pokemon/2/",
+          "tipo": "poison",
+          "descrizione": "Dopo aver assorbito sufficienti sostanze nutrienti,\nil bulbo sulla schiena sboccia in un magnifico fiore."
         },
         {
           "name": "metapod",
-          "url": "https://pokeapi.co/api/v2/pokemon/11/"
+          "url": "https://pokeapi.co/api/v2/pokemon/11/",
+          "tipo": "bug",
+          "descrizione": "Ha una corazza dura come l’acciaio che protegge\nil suo fragile corpo. Attende immobile di evolversi."
         }
       ]
     },
     {
       "id": 2,
-      "nome": "aaas",
-      "password": "aaa",
+      "nome": "fff",
+      "password": "fff",
       "pokedex": [
         {
           "name": "bulbasaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/1/"
-        },
-        {
-          "name": "ivysaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/2/"
+          "url": "https://pokeapi.co/api/v2/pokemon/1/",
+          "tipo": "poison",
+          "descrizione": "Alla nascita gli è stato piantato sulla schiena un seme\nraro. La pianta sboccia e cresce con lui.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
         },
         {
           "name": "caterpie",
-          "url": "https://pokeapi.co/api/v2/pokemon/10/"
+          "url": "https://pokeapi.co/api/v2/pokemon/10/",
+          "tipo": "bug",
+          "descrizione": "Per proteggersi emette un puzzo terribile\ndall’antenna sul capo, tenendo lontani i nemici.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/10.svg"
+        },
+        {
+          "name": "caterpie",
+          "url": "https://pokeapi.co/api/v2/pokemon/10/",
+          "tipo": "bug",
+          "descrizione": "Per proteggersi emette un puzzo terribile\ndall’antenna sul capo, tenendo lontani i nemici.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/10.svg"
         }
       ]
     },
     {
       "id": 3,
-      "nome": "marios",
-      "password": "sdfs",
+      "nome": "ggg",
+      "password": "ggg",
       "pokedex": [
         {
           "name": "bulbasaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/1/"
+          "tipo": "poison",
+          "descrizione": "Alla nascita gli è stato piantato sulla schiena un seme\nraro. La pianta sboccia e cresce con lui.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
         },
         {
-          "name": "ivysaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/2/"
+          "name": "metapod",
+          "tipo": "bug",
+          "descrizione": "Ha una corazza dura come l’acciaio che protegge\nil suo fragile corpo. Attende immobile di evolversi.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/11.svg"
         },
         {
-          "name": "pidgey",
-          "url": "https://pokeapi.co/api/v2/pokemon/16/"
-        }
-      ]
-    },
-    {
-      "id": 4,
-      "nome": "luca",
-      "password": "dsfads",
-      "pokedex": [
-        {
-          "name": "bulbasaur",
-          "url": "https://pokeapi.co/api/v2/pokemon/1/"
-        },
-        {
-          "name": "charmander",
-          "url": "https://pokeapi.co/api/v2/pokemon/4/"
-        },
-        {
-          "name": "squirtle",
-          "url": "https://pokeapi.co/api/v2/pokemon/7/"
+          "name": "venusaur",
+          "tipo": "poison",
+          "descrizione": "Si riempie di energia grazie ai grandi petali del fiore,\nche spalanca catturando i raggi solari.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg"
         }
       ]
     }

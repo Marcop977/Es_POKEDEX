@@ -8,42 +8,24 @@ pokedexUtente.innerHTML = `Pokédex di ${userPokedex.nome}`;
 fetch(`http://localhost:3000/users/${userPokedexId}`)
 .then(data =>{return data.json()})
 .then(response =>{
-
-    response.pokedex.forEach(pok => {
-
-        fetch(pok.url)
-        .then(data =>{return data.json()})
-        .then(abilita =>{
-            
-            let descrizioneTrovata = false
-            
-            fetch(abilita.species.url)
-            .then(data =>{return data.json()})
-            .then(descrizione =>{
-
-                descrizione.flavor_text_entries.forEach(element => {
-
-                    if(element.language.name == 'it' && !descrizioneTrovata){  
-                        
-                        console.log(element.flavor_text);
-                        descrizioneTrovata = true;           //essendo che ci sono molte descrizioni in italiano, non appena ne trova una, il valore diventa true
-                        
-                        let cardPokemon = `
-                            <div class="card col-3 m-2 text-center d-flex justify-content-center">
-                                <img class="card-img-top w-50 mx-auto py-5" src="${abilita.sprites.other.dream_world.front_default}" alt="Title">
-                                <div class="card-body h-100 d-flex flex-column justify-content-end">
-                                    <h4 class="card-title">${pok.name.charAt(0).toUpperCase() + pok.name.slice(1)}</h4>
-                                    <p class="card-text">${element.flavor_text}</p>
-                                </div>
-                            </div>
-                        `;
-                        
-                        grigliaPokemon.innerHTML += cardPokemon;
-                        
-                    }
-                });
-            })
-        })
+    
+    response.pokedex.forEach(element => {
+        let cardPokemon = `
+            <div class="card col-3 m-2 text-center d-flex justify-content-center">
+                <img class="card-img-top w-50 mx-auto py-5" src="${element.immagine}" alt="Title">
+                <div class="card-body h-100 d-flex flex-column justify-content-end">
+                    <h4 class="card-title">${element.name.charAt(0).toUpperCase() + element.name.slice(1)}</h4>
+                    <p class="card-text">Tipo: ${element.tipo.charAt(0).toUpperCase() + element.tipo.slice(1)}</p>
+                    <p class="card-text">${element.descrizione}</p>
+                </div>
+            </div>
+        `;
         
+        grigliaPokemon.innerHTML += cardPokemon;
     });
+    console.log(response.pokedex);
+
+
+    
+    
 })

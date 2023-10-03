@@ -39,7 +39,7 @@ fetch("http://localhost:3000/users")
                     console.log("Nuovo utente registrato!");
                     setTimeout(() =>{
                         location.href = "pokemon.html";
-                    }, 3000);
+                    }, 0);
                 }
             })
         }else{
@@ -60,5 +60,3 @@ fetch("http://localhost:3000/users")
         loginUtente(response, nomeInput.value, passwordInput.value);
     })
 })    
-
-
