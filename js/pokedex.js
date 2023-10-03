@@ -20,6 +20,7 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                     <button id="modificaNome" data-name="${element.name}">Modifica nome</button>
                     <button id="modificaTipo" data-name="${element.name}">Modifica tipo</button>
                     <button id="modificaDescrizione" data-name="${element.name}">Modifica descrizione</button>
+                    <button id="inserisciIndirizzo" data-name="${element.name}">Inserisci indirizzo</button>
                 </div>
             </div>
         `;
@@ -27,6 +28,47 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
         console.log(element);
 
     })
+
+    
+    const btnIndirizzo = document.querySelectorAll(`#inserisciIndirizzo`);
+    btnIndirizzo.forEach(button => {
+        button.addEventListener("click", function(){
+            let formIndirizzo = `
+                <form id="addressForm">
+                    <label for="indirizzo"></label>
+                    <input type="text" id="indirizzo" placeholder="Inserisci indirizzo" />
+                    <button type="submit" id="cerca">Mostra mappa</button>
+                </form>
+                <div id="map" style="width: 100%; height: 400px"></div>
+            `;
+
+            let formContainer = document.createElement('div');
+            formContainer.innerHTML = formIndirizzo;
+            button.parentNode.appendChild(formContainer);
+
+            const map = L.map("map").setView([51.505, -0.09], 13); //crea una mappa leaflet e la imposta su quelle coordinate
+            L.tileLayer("//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);  //aggiunge un layer(es immagine mappa) da openstreetmap
+            const provider = new GeoSearch.OpenStreetMapProvider(); // provider per geocoding, geocodifica l'indirizzo in coordinate 
+
+            let marker;
+            document.getElementById("addressForm").addEventListener("submit", function (event) {
+                event.preventDefault();
+                const address = document.getElementById("indirizzo").value;
+                const results = provider.search({query: address}); // cerca l'indirizzo usando il provider di geocodifica
+                results.then(data => {
+                    const location = data[0];  //prende quello all'indice 0
+                    if (marker) {                       //se il marker esiste già, lo rimuove
+                        map.removeLayer(marker);
+                    }
+            
+                    marker = L.marker([location.y, location.x]).addTo(map)  // imposta il marker sulle coordinate
+                    map.setView([location.y, location.x], 13);     //imposta la mappa sulle coordinate
+                })
+
+  
+            });
+        })
+    });
 
 
     const btnModifica = document.querySelectorAll(`#modificaDescrizione`);
