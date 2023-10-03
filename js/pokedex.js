@@ -44,7 +44,7 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
 
             let formContainer = document.createElement('div');
             formContainer.innerHTML = formIndirizzo;
-            button.parentNode.appendChild(formContainer);
+            button.parentNode.appendChild(formContainer);  //parentNode restituisce l'elemento HTML che contiene il bottone
 
             const map = L.map("map").setView([51.505, -0.09], 13); //crea una mappa leaflet e la imposta su quelle coordinate
             L.tileLayer("//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);  //aggiunge un layer(es immagine mappa) da openstreetmap
@@ -55,7 +55,7 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                 event.preventDefault();
                 const address = document.getElementById("indirizzo").value;
                 const results = provider.search({query: address}); // cerca l'indirizzo usando il provider di geocodifica
-                results.then(data => {
+                results.then(data => {  //esegue un'azione quando la promessa si risolve, quando i dati sono disponibili
                     const location = data[0];  //prende quello all'indice 0
                     if (marker) {                       //se il marker esiste già, lo rimuove
                         map.removeLayer(marker);
@@ -63,11 +63,33 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
             
                     marker = L.marker([location.y, location.x]).addTo(map)  // imposta il marker sulle coordinate
                     map.setView([location.y, location.x], 13);     //imposta la mappa sulle coordinate
+                    
+                    const apiKey = 'd97b4d77c47e13daf78490b260c54900'; // Sostituisci con la tua chiave API
+                    const meteoApi = `https://api.openweathermap.org/data/2.5/weather?lat=${location.y}&lon=${location.x}&appid=${apiKey}&units=metric`;
+    
+                    console.log(location);
+                    fetch(meteoApi)
+                    .then(response => response.json())
+                    .then(meteo => {
+                        console.log(meteo);
+                        const li = document.createElement("li");
+                        li.innerHTML = `
+                            <p>Temperatura: <strong> ${meteo.main.temp} °</strong></p>
+                            <p>Cielo: <strong>${meteo.weather[0].description}</strong></p> 
+                            <p>Umidità: <strong>${meteo.main.humidity} %</strong></p> 
+                            <p>Vento: <strong>${meteo.wind.speed} Km/h</strong></p> 
+                        `;
+                        button.parentNode.appendChild(li);
+                    })
                 })
 
+
+
+            })
+
   
-            });
-        })
+        });
+        
     });
 
 
