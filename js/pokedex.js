@@ -38,11 +38,13 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
             const pokemonNome = this.dataset.name;  //prendo il valore di data-name
             const descrizione = document.querySelector(`#descrizione_${pokemonNome}`)  //prendo l'id di ogni descrizione
             const nuovaDescrizione = prompt("Inserisci nuova descrizione:");
+
             if(nuovaDescrizione != ""){
                 descrizione.textContent = nuovaDescrizione;
-        
-        
+                
+                
                 const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome); //all'interno del pokedex, prendo i pokemon il cui nome è lo stesso di data-name così da avere il pokemon da modificare
+                // pokemonDaModificare.indirizzo = nuovaDescrizione;
                 pokemonDaModificare.descrizione = nuovaDescrizione;
         
                 fetch(`http://localhost:3000/users/${userPokedexId}`, {
@@ -67,9 +69,14 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
             }
             
 
-            const meteoEsiste = document.querySelector(".meteo-info");
-            if(meteoEsiste){
-                meteoEsiste.remove();
+            const meteoClasseEsiste = document.querySelector(".meteo-info");
+            if(meteoClasseEsiste){
+                meteoClasseEsiste.remove();
+            }
+
+            const meteoIdEsiste = document.querySelector("#meteo-info");
+            if(meteoIdEsiste){
+                meteoIdEsiste.remove();
             }
 
             let formIndirizzo = `
@@ -139,12 +146,17 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                 mappaEsiste.remove();            
             }
 
-            const meteoEsiste = document.querySelector(".meteo-info");
-            if(meteoEsiste){
-                meteoEsiste.remove();
+            const meteoClasseEsiste = document.querySelector(".meteo-info");
+            if(meteoClasseEsiste){
+                meteoClasseEsiste.remove();
             }
 
-            console.log(button.dataset.name);
+            const meteoIdEsiste = document.querySelector("#meteo-info");
+            if(meteoIdEsiste){
+                meteoIdEsiste.remove();
+            }
+
+            console.log(button.dataset.name);  //prende data-set nella card sopra in inserisciIndirizzo
             let formIndirizzo = `
                 <form id="addressForm" data-name="${button.dataset.name}">
                     <label for="indirizzo"></label>
@@ -154,6 +166,13 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                 <div id="map" style="width: 100%; height: 400px"></div>
             `;
 
+            //----------------------------------------------------------------------------------------------------------------------------------------------------------------//
+            // const pokemonNome = this.dataset.name;  //prendo il valore di data-name di chi ha scatenato l'evento, quindi il form   //ho provato a cambiare l'indirizzo in questo punto, lo cambia ma nel database rimane invariato
+            // const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome);
+            // console.log("Pokemon da modificare:", pokemonDaModificare);
+            // pokemonDaModificare.indirizzo = "ciao";
+            // console.log("Nuovo indirizzo:", pokemonDaModificare.indirizzo);
+            //-----------------------------------------------------------------------------------------------------------------------------------------------------------------//
             let formContainer = document.createElement('div');
             formContainer.innerHTML = formIndirizzo;
             button.parentNode.appendChild(formContainer);  //parentNode restituisce l'elemento HTML che contiene il bottone
@@ -161,7 +180,6 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
             const map = L.map("map").setView([51.505, -0.09], 13); //crea una mappa leaflet e la imposta su quelle coordinate
             L.tileLayer("//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);  //aggiunge un layer(es immagine mappa) da openstreetmap
             const provider = new GeoSearch.OpenStreetMapProvider(); // provider per geocoding, geocodifica l'indirizzo in coordinate 
-
             let marker;
             document.getElementById("addressForm").addEventListener("submit", function (event) {
                 event.preventDefault();
@@ -174,6 +192,16 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                     const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome);
                     console.log(pokemonDaModificare);
                     pokemonDaModificare.indirizzo = address;
+
+                    const meteoClasseEsiste = document.querySelector(".meteo-info");
+                    if(meteoClasseEsiste){
+                        meteoClasseEsiste.remove();
+                    }
+
+                    const meteoIdEsiste = document.querySelector("#meteo-info");
+                    if(meteoIdEsiste){
+                        meteoIdEsiste.remove();
+                    }
 
 
 

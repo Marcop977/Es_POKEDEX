@@ -1,9 +1,9 @@
 {
   "users": [
     {
-      "id": 4,
-      "nome": "ggg",
-      "password": "hjhhh",
+      "id": 1,
+      "nome": "aaa",
+      "password": "aaa",
       "pokedex": [
         {
           "name": "bulbasaur",
@@ -20,10 +20,10 @@
           "indirizzo": "Via roma, Napoli"
         },
         {
-          "name": "venusaur",
-          "tipo": "poison",
-          "descrizione": "Si riempie di energia grazie ai grandi petali del fiore,\nche spalanca catturando i raggi solari.",
-          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg",
+          "name": "caterpie",
+          "tipo": "bug",
+          "descrizione": "Per proteggersi emette un puzzo terribile\ndall’antenna sul capo, tenendo lontani i nemici.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/10.svg",
           "indirizzo": "Via roma, Napoli"
         }
       ]
