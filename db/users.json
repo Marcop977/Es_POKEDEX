@@ -1,3 +1,63 @@
 {
-  "users": []
+  "users": [
+    {
+      "id": 1,
+      "nome": "aaa",
+      "password": "aaa",
+      "pokedex": [
+        {
+          "name": "bulbasaur",
+          "tipo": "poison",
+          "descrizione": "Alla nascita gli è stato piantato sulla schiena un seme\nraro. La pianta sboccia e cresce con lui.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
+        },
+        {
+          "name": "caterpie",
+          "tipo": "bug",
+          "descrizione": "Per proteggersi emette un puzzo terribile\ndall’antenna sul capo, tenendo lontani i nemici.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/10.svg"
+        },
+        {
+          "name": "metapod",
+          "tipo": "bug",
+          "descrizione": "Ha una corazza dura come l’acciaio che protegge\nil suo fragile corpo. Attende immobile di evolversi.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/11.svg"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "ddd",
+      "password": "ddd",
+      "pokedex": []
+    },
+    {
+      "id": 3,
+      "nome": "ggg",
+      "password": "ggg",
+      "pokedex": [
+        {
+          "name": "bulbasaur",
+          "tipo": "poison",
+          "descrizione": "Alla nascita gli è stato piantato sulla schiena un seme\nraro. La pianta sboccia e cresce con lui.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg",
+          "indirizzo": "Via roma, Napoli"
+        },
+        {
+          "name": "ivysaur",
+          "tipo": "poison",
+          "descrizione": "Dopo aver assorbito sufficienti sostanze nutrienti,\nil bulbo sulla schiena sboccia in un magnifico fiore.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg",
+          "indirizzo": "Via roma, Napoli"
+        },
+        {
+          "name": "caterpie",
+          "tipo": "bug",
+          "descrizione": "Per proteggersi emette un puzzo terribile\ndall’antenna sul capo, tenendo lontani i nemici.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/10.svg",
+          "indirizzo": "Via roma, Napoli"
+        }
+      ]
+    }
+  ]
 }

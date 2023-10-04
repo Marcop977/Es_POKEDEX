@@ -36,7 +36,7 @@ fetch("https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0")
             // descrizione
             let descrizioneTrovata = false
             
-           
+            
 
             fetch(response.species.url)
             .then(data =>{return data.json()})
@@ -68,7 +68,8 @@ fetch("https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0")
                         name: pokemon.name,
                         tipo: tipoPok,
                         descrizione: pokemon.descrizione,
-                        immagine: pokemon.immagine 
+                        immagine: pokemon.immagine ,
+                        indirizzo: "Via roma, Napoli"
                     }
 
                     //devo fare una post nell'array pokedex in users, ma non conosco l'user che si è loggato alla pagina (lo so solo con localstorage finora)

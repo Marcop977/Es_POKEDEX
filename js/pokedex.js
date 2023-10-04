@@ -8,7 +8,7 @@ pokedexUtente.innerHTML = `Pokédex di ${userPokedex.nome}`;
 fetch(`http://localhost:3000/users/${userPokedexId}`)
 .then(data =>{return data.json()})
 .then(response =>{
-    
+    console.log(response);
     response.pokedex.forEach(element => {
         let cardPokemon = `
             <div class="card col-3 m-2 text-center d-flex justify-content-center">
@@ -20,12 +20,13 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                     <button id="modificaNome" data-name="${element.name}">Modifica nome</button>
                     <button id="modificaTipo" data-name="${element.name}">Modifica tipo</button>
                     <button id="modificaDescrizione" data-name="${element.name}">Modifica descrizione</button>
+                    <button id="localizzaPokemon" data-name="${element.name}">Localizza</button>
                     <button id="inserisciIndirizzo" data-name="${element.name}">Inserisci indirizzo</button>
                 </div>
             </div>
         `;
         grigliaPokemon.innerHTML += cardPokemon;
-        console.log(element);
+        // console.log(element);
 
     })
     
@@ -55,10 +56,91 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
             }
         })
     });
+    const btnLocalizza = document.querySelectorAll("#localizzaPokemon");
+    btnLocalizza.forEach(button => {
+        button.addEventListener("click", function(event){
+            const mappaEsiste = document.querySelector("#map");
+            if (mappaEsiste) {
+                mappaEsiste.remove();            
+            }
+            
+
+            const meteoEsiste = document.querySelector(".meteo-info");
+            if(meteoEsiste){
+                meteoEsiste.remove();
+            }
+
+            let formIndirizzo = `
+                <div id="map" style="width: 100%; height: 400px"></div>
+            `;
+
+            let formContainer = document.createElement('div');
+            formContainer.innerHTML = formIndirizzo;
+            button.parentNode.appendChild(formContainer);  //parentNode restituisce l'elemento HTML che contiene il bottone
+
+            const map = L.map("map").setView([51.505, -0.09], 13); //crea una mappa leaflet e la imposta su quelle coordinate
+            L.tileLayer("//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);  //aggiunge un layer(es immagine mappa) da openstreetmap
+            const provider = new GeoSearch.OpenStreetMapProvider(); // provider per geocoding, geocodifica l'indirizzo in coordinate 
+            let marker;
+            event.preventDefault();
+            const address = response.pokedex[0].indirizzo;
+            const results = provider.search({query: address}); // cerca l'indirizzo usando il provider di geocodifica
+            results.then(data => {  //esegue un'azione quando la promessa si risolve, quando i dati sono disponibili
+                const location = data[0];  //prende quello all'indice 0
+                if (marker) {                       //se il marker esiste già, lo rimuove
+                    map.removeLayer(marker);
+                }
+                
+                const iconaMarker = L.icon({
+                    iconUrl: 'img/1200px-Pokémon_GO_Plus.svg.png',
+                    iconSize: [35, 50],
+                });
+
+                marker = L.marker([location.y, location.x], { icon: iconaMarker }).addTo(map);  // imposta il marker sulle coordinate
+                map.setView([location.y, location.x], 13);     //imposta la mappa sulle coordinate
+                
+                const apiKey = 'd97b4d77c47e13daf78490b260c54900'; // Sostituisci con la tua chiave API
+                const meteoApi = `https://api.openweathermap.org/data/2.5/weather?lat=${location.y}&lon=${location.x}&appid=${apiKey}&units=metric`;
+
+                console.log(location);
+                fetch(meteoApi)
+                .then(response => response.json())
+                .then(meteo => {
+                    console.log(meteo);
+                    const div = document.createElement("div");
+                    div.classList.add("meteo-info");
+                    div.innerHTML = `
+                        <p>Temperatura: <strong> ${meteo.main.temp} °</strong></p>
+                        <p>Cielo: <strong>${meteo.weather[0].description}</strong></p> 
+                        <p>Umidità: <strong>${meteo.main.humidity} %</strong></p> 
+                        <p>Vento: <strong>${meteo.wind.speed} Km/h</strong></p> 
+                    `;
+                    button.parentNode.appendChild(div);
+                })
+            })
+
+           
+        });
+    });
     
     const btnIndirizzo = document.querySelectorAll(`#inserisciIndirizzo`);
     btnIndirizzo.forEach(button => {
         button.addEventListener("click", function(){
+
+            const formEsiste = document.querySelector("#addressForm");
+            if(formEsiste){
+                formEsiste.remove();
+            }
+
+            const mappaEsiste = document.querySelector("#map");
+            if (mappaEsiste) {
+                mappaEsiste.remove();            
+            }
+
+            const meteoEsiste = document.querySelector(".meteo-info");
+            if(meteoEsiste){
+                meteoEsiste.remove();
+            }
             let formIndirizzo = `
                 <form id="addressForm">
                     <label for="indirizzo"></label>
@@ -79,40 +161,48 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
             let marker;
             document.getElementById("addressForm").addEventListener("submit", function (event) {
                 event.preventDefault();
-                const address = document.getElementById("indirizzo").value;
-                const results = provider.search({query: address}); // cerca l'indirizzo usando il provider di geocodifica
-                results.then(data => {  //esegue un'azione quando la promessa si risolve, quando i dati sono disponibili
-                    const location = data[0];  //prende quello all'indice 0
-                    if (marker) {                       //se il marker esiste già, lo rimuove
-                        map.removeLayer(marker);
-                    }
-                    
-                    const iconaMarker = L.icon({
-                        iconUrl: 'img/1200px-Pokémon_GO_Plus.svg.png',
-                        iconSize: [35, 50],
-                    });
+                let address = document.getElementById("indirizzo").value;
 
-                    marker = L.marker([location.y, location.x], { icon: iconaMarker }).addTo(map);  // imposta il marker sulle coordinate
-                    map.setView([location.y, location.x], 13);     //imposta la mappa sulle coordinate
-                    
-                    const apiKey = 'd97b4d77c47e13daf78490b260c54900'; // Sostituisci con la tua chiave API
-                    const meteoApi = `https://api.openweathermap.org/data/2.5/weather?lat=${location.y}&lon=${location.x}&appid=${apiKey}&units=metric`;
+                if(address.trim() == ""){
+                    alert("Non puoi lasciare il campo vuoto");
+                }else{
+                    const results = provider.search({query: address}); // cerca l'indirizzo usando il provider di geocodifica
+                    results.then(data => {  //esegue un'azione quando la promessa si risolve, quando i dati sono disponibili
+                        const location = data[0];  //prende quello all'indice 0
+                        if (marker) {                       //se il marker esiste già, lo rimuove
+                            map.removeLayer(marker);
+                        }
+                        
+                        const iconaMarker = L.icon({
+                            iconUrl: 'img/1200px-Pokémon_GO_Plus.svg.png',
+                            iconSize: [35, 50],
+                        });
     
-                    console.log(location);
-                    fetch(meteoApi)
-                    .then(response => response.json())
-                    .then(meteo => {
-                        console.log(meteo);
-                        const div = document.createElement("div");
-                        div.innerHTML = `
-                            <p>Temperatura: <strong> ${meteo.main.temp} °</strong></p>
-                            <p>Cielo: <strong>${meteo.weather[0].description}</strong></p> 
-                            <p>Umidità: <strong>${meteo.main.humidity} %</strong></p> 
-                            <p>Vento: <strong>${meteo.wind.speed} Km/h</strong></p> 
-                        `;
-                        button.parentNode.appendChild(div);
+                        marker = L.marker([location.y, location.x], { icon: iconaMarker }).addTo(map);  // imposta il marker sulle coordinate
+                        map.setView([location.y, location.x], 13);     //imposta la mappa sulle coordinate
+                        
+                        const apiKey = 'd97b4d77c47e13daf78490b260c54900'; // Sostituisci con la tua chiave API
+                        const meteoApi = `https://api.openweathermap.org/data/2.5/weather?lat=${location.y}&lon=${location.x}&appid=${apiKey}&units=metric`;
+        
+                        console.log(location);
+                        fetch(meteoApi)
+                        .then(response => response.json())
+                        .then(meteo => {
+                            const div = document.createElement("div");
+                            div.setAttribute("id", "meteo-info");
+                            div.innerHTML = `
+                                <p>Temperatura: <strong> ${meteo.main.temp} °</strong></p>
+                                <p>Cielo: <strong>${meteo.weather[0].description}</strong></p> 
+                                <p>Umidità: <strong>${meteo.main.humidity} %</strong></p> 
+                                <p>Vento: <strong>${meteo.wind.speed} Km/h</strong></p> 
+                            `;
+                            button.parentNode.appendChild(div);
+                            
+                        })
+                    
                     })
-                })
+
+                }
 
 
 

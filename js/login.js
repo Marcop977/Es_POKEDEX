@@ -26,8 +26,8 @@ fetch("http://localhost:3000/users")
                 },
                 body: JSON.stringify(utente)
             })
-            .then(utenteEsistente =>{  
-                if(utenteEsistente.ok){    //una volta creato l'utente, questo if chiede "l'utente esiste?", se è true("ok" è una proprietà di response, ovvero se la richiesta ha avuto successo), allora mi sposta alla seconda pagina. E' una condizione sempre vera, poiché se l'utente non esiste viene sempre automaticamente creato, e quindi esisterà sempre un utente
+            .then(utenteNonEsistente =>{  
+                if(utenteNonEsistente.ok){    //una volta creato l'utente, questo if chiede "l'utente esiste?", se è true("ok" è una proprietà di response, ovvero se la richiesta ha avuto successo), allora mi sposta alla seconda pagina. E' una condizione sempre vera, poiché se l'utente non esiste viene sempre automaticamente creato, e quindi esisterà sempre un utente
                     let alert = `
                         <div class="alert alert-primary alert-dismissible fade show position-fixed bottom-0 end-0" role="alert">
                             <strong>Benvenuto ${utente.nome}!</strong> Stai per essere indirizzato alla pagina dei pokemon.
@@ -35,7 +35,7 @@ fetch("http://localhost:3000/users")
                         </div>
                     `;
                     spazioAlert.innerHTML = alert;
-                    console.log(utenteEsistente);
+                    console.log(utenteNonEsistente);
                     console.log("Nuovo utente registrato!");
                     setTimeout(() =>{
                         location.href = "pokemon.html";
