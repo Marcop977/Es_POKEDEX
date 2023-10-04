@@ -135,6 +135,7 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
     const btnIndirizzo = document.querySelectorAll(`#inserisciIndirizzo`);
     btnIndirizzo.forEach(button => {
         button.addEventListener("click", function(){
+            
 
             const formEsiste = document.querySelector("#addressForm");
             if(formEsiste){
@@ -167,7 +168,7 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
             `;
 
             //----------------------------------------------------------------------------------------------------------------------------------------------------------------//
-            // const pokemonNome = this.dataset.name;  //prendo il valore di data-name di chi ha scatenato l'evento, quindi il form   //ho provato a cambiare l'indirizzo in questo punto, lo cambia ma nel database rimane invariato
+            // const pokemonNome = this.dataset.name;  //prendo il valore di data-name di chi ha scatenato l'evento, quindi il button   //ho provato a cambiare l'indirizzo in questo punto, lo cambia ma nel database rimane invariato
             // const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome);
             // console.log("Pokemon da modificare:", pokemonDaModificare);
             // pokemonDaModificare.indirizzo = "ciao";
