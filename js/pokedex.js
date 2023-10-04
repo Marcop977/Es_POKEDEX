@@ -28,7 +28,33 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
         console.log(element);
 
     })
+    
+    const btnModifica = document.querySelectorAll(`#modificaDescrizione`);
+    btnModifica.forEach(button => {
+        button.addEventListener("click", function(){
+            const pokemonNome = this.dataset.name;  //prendo il valore di data-name
+            const descrizione = document.querySelector(`#descrizione_${pokemonNome}`)  //prendo l'id di ogni descrizione
+            const nuovaDescrizione = prompt("Inserisci nuova descrizione:");
+            if(nuovaDescrizione != ""){
+                descrizione.textContent = nuovaDescrizione;
+        
+        
+                const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome); //all'interno del pokedex, prendo i pokemon il cui nome è lo stesso di data-name così da avere il pokemon da modificare
+                pokemonDaModificare.descrizione = nuovaDescrizione;
+        
+                fetch(`http://localhost:3000/users/${userPokedexId}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ pokedex: response.pokedex })  //una volta aggiornato il campo descrizione, aggiorno tutto l'array pokedex
+                })
 
+            }else{
+                alert("Non puoi lasciare il campo vuoto");
+            }
+        })
+    });
     
     const btnIndirizzo = document.querySelectorAll(`#inserisciIndirizzo`);
     btnIndirizzo.forEach(button => {
@@ -98,32 +124,6 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
     });
 
 
-    const btnModifica = document.querySelectorAll(`#modificaDescrizione`);
-    btnModifica.forEach(button => {
-        button.addEventListener("click", function(){
-            const pokemonNome = this.dataset.name;  //prendo il valore di data-name
-            const descrizione = document.querySelector(`#descrizione_${pokemonNome}`)  //prendo l'id di ogni descrizione
-            const nuovaDescrizione = prompt("Inserisci nuova descrizione:");
-            if(nuovaDescrizione != ""){
-                descrizione.textContent = nuovaDescrizione;
-        
-        
-                const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome); //all'interno del pokedex, prendo i pokemon il cui nome è lo stesso di data-name così da avere il pokemon da modificare
-                pokemonDaModificare.descrizione = nuovaDescrizione;
-        
-                fetch(`http://localhost:3000/users/${userPokedexId}`, {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({ pokedex: response.pokedex })  //una volta aggiornato il campo descrizione, aggiorno tutto l'array pokedex
-                })
-
-            }else{
-                alert("Non puoi lasciare il campo vuoto");
-            }
-        })
-    });
 
 
 
@@ -131,14 +131,14 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
     btnNome.forEach(button => {
         button.addEventListener("click", function(){
             const pokemonNome = this.dataset.name;  //prendo il valore di data-name
-            const descrizione = document.querySelector(`#nome_${pokemonNome}`)  //prendo l'id di ogni descrizione
-            const nuovaDescrizione = prompt("Inserisci nuova descrizione:");
-            if(nuovaDescrizione != ""){
-                descrizione.textContent = nuovaDescrizione;
+            const nomeCampo = document.querySelector(`#nome_${pokemonNome}`)  //prendo l'id di ogni descrizione
+            const nuovoNome = prompt("Inserisci nuovo nome:");
+            if(nuovoNome != ""){
+                nomeCampo.textContent = nuovoNome;
         
         
                 const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome); //all'interno del pokedex, prendo i pokemon il cui nome è lo stesso di data-name così da avere il pokemon da modificare
-                pokemonDaModificare.descrizione = nuovaDescrizione;
+                pokemonDaModificare.name = nuovoNome;
         
                 fetch(`http://localhost:3000/users/${userPokedexId}`, {
                     method: "PATCH",
@@ -158,14 +158,14 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
     btnTipo.forEach(button => {
         button.addEventListener("click", function(){
             const pokemonNome = this.dataset.name;  //prendo il valore di data-name
-            const descrizione = document.querySelector(`#tipo_${pokemonNome}`)  //prendo l'id di ogni descrizione
-            const nuovaDescrizione = prompt("Inserisci nuova descrizione:");
-            if(nuovaDescrizione != ""){
-                descrizione.textContent = nuovaDescrizione;
+            const tipoCampo = document.querySelector(`#tipo_${pokemonNome}`)  //prendo l'id di ogni descrizione
+            const nuovoTipo = prompt("Inserisci nuovo tipo:");
+            if(nuovoTipo != ""){
+                tipoCampo.textContent = nuovoTipo;
         
         
                 const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome); //all'interno del pokedex, prendo i pokemon il cui nome è lo stesso di data-name così da avere il pokemon da modificare
-                pokemonDaModificare.descrizione = nuovaDescrizione;
+                pokemonDaModificare.tipo = nuovoTipo;
         
                 fetch(`http://localhost:3000/users/${userPokedexId}`, {
                     method: "PATCH",
@@ -181,4 +181,3 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
         })
     });
 })
-

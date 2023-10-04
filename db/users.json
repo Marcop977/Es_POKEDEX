@@ -1,29 +1,3 @@
 {
-  "users": [
-    {
-      "id": 1,
-      "nome": "aaa",
-      "password": "aaa",
-      "pokedex": [
-        {
-          "name": "bulbasaur",
-          "tipo": "poison",
-          "descrizione": "Alla nascita gli è stato piantato sulla schiena un seme\nraro. La pianta sboccia e cresce con lui.",
-          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg"
-        },
-        {
-          "name": "ivysaur",
-          "tipo": "poison",
-          "descrizione": "Dopo aver assorbito sufficienti sostanze nutrienti,\nil bulbo sulla schiena sboccia in un magnifico fiore.",
-          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg"
-        },
-        {
-          "name": "venusaur",
-          "tipo": "poison",
-          "descrizione": "Si riempie di energia grazie ai grandi petali del fiore,\nche spalanca catturando i raggi solari.",
-          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg"
-        }
-      ]
-    }
-  ]
+  "users": []
 }
