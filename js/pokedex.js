@@ -158,11 +158,14 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
             }
 
             console.log(button.dataset.name);  //prende data-set nella card sopra in inserisciIndirizzo
+            // let input = document.createElement("input");
+            // input.setAttribute("type", "text");
+            // input.setAttribute("id", "indirizzo");
             let formIndirizzo = `
-                <form id="addressForm" data-name="${button.dataset.name}">
+                <form id="addressForm" data-name="${this.dataset.name}">
                     <label for="indirizzo"></label>
                     <input type="text" id="indirizzo" placeholder="Inserisci indirizzo" />
-                    <button type="submit" id="cerca">Mostra mappa</button>
+                    <button id="cerca">Mostra mappa</button>
                 </form>
                 <div id="map" style="width: 100%; height: 400px"></div>
             `;
@@ -189,10 +192,15 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                     alert("Non puoi lasciare il campo vuoto");
                 }else{
 
-                    const pokemonNome = this.dataset.name;  //prendo il valore di data-name
-                    const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome);
-                    console.log(pokemonDaModificare);
-                    pokemonDaModificare.indirizzo = address;
+                    // const pokemonNome = this.dataset.name;  //prendo il valore di data-name
+                    // const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome);
+                    // console.log(pokemonDaModificare);
+                    // pokemonDaModificare.indirizzo = address;
+
+                    const formEsiste = document.querySelector("#addressForm");
+                    if(formEsiste){
+                        formEsiste.remove();
+                    }
 
                     const meteoClasseEsiste = document.querySelector(".meteo-info");
                     if(meteoClasseEsiste){
