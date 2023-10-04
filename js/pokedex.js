@@ -11,7 +11,8 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
     console.log(response);
     response.pokedex.forEach(element => {
         let cardPokemon = `
-            <div class="card col-3 m-2 text-center d-flex justify-content-center">
+            <div class="col-3">
+              <div class="card text-center d-flex justify-content-center">
                 <img class="card-img-top w-50 mx-auto py-5" src="${element.immagine}" alt="Title">
                 <div class="card-body h-100 d-flex flex-column justify-content-end">
                     <h4 class="card-title" id="nome_${element.name}">${element.name.charAt(0).toUpperCase() + element.name.slice(1)}</h4>
@@ -23,6 +24,7 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                     <button id="localizzaPokemon" data-name="${element.name}">Localizza</button>
                     <button id="inserisciIndirizzo" data-name="${element.name}">Inserisci indirizzo</button>
                 </div>
+              </div>
             </div>
         `;
         grigliaPokemon.innerHTML += cardPokemon;
@@ -141,8 +143,10 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
             if(meteoEsiste){
                 meteoEsiste.remove();
             }
+
+            console.log(button.dataset.name);
             let formIndirizzo = `
-                <form id="addressForm">
+                <form id="addressForm" data-name="${button.dataset.name}">
                     <label for="indirizzo"></label>
                     <input type="text" id="indirizzo" placeholder="Inserisci indirizzo" />
                     <button type="submit" id="cerca">Mostra mappa</button>
@@ -162,10 +166,17 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
             document.getElementById("addressForm").addEventListener("submit", function (event) {
                 event.preventDefault();
                 let address = document.getElementById("indirizzo").value;
-
                 if(address.trim() == ""){
                     alert("Non puoi lasciare il campo vuoto");
                 }else{
+
+                    const pokemonNome = this.dataset.name;  //prendo il valore di data-name
+                    const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome);
+                    console.log(pokemonDaModificare);
+                    pokemonDaModificare.indirizzo = address;
+
+
+
                     const results = provider.search({query: address}); // cerca l'indirizzo usando il provider di geocodifica
                     results.then(data => {  //esegue un'azione quando la promessa si risolve, quando i dati sono disponibili
                         const location = data[0];  //prende quello all'indice 0
