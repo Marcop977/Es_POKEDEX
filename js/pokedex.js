@@ -54,6 +54,7 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                     },
                     body: JSON.stringify({ pokedex: response.pokedex })  //una volta aggiornato il campo descrizione, aggiorno tutto l'array pokedex
                 })
+                .then(data =>{return data.json()})
 
             }else{
                 alert("Non puoi lasciare il campo vuoto");
@@ -170,13 +171,7 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                 <div id="map" style="width: 100%; height: 400px"></div>
             `;
 
-            //----------------------------------------------------------------------------------------------------------------------------------------------------------------//
-            // const pokemonNome = this.dataset.name;  //prendo il valore di data-name di chi ha scatenato l'evento, quindi il button   //ho provato a cambiare l'indirizzo in questo punto, lo cambia ma nel database rimane invariato
-            // const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome);
-            // console.log("Pokemon da modificare:", pokemonDaModificare);
-            // pokemonDaModificare.indirizzo = "ciao";
-            // console.log("Nuovo indirizzo:", pokemonDaModificare.indirizzo);
-            //-----------------------------------------------------------------------------------------------------------------------------------------------------------------//
+
             let formContainer = document.createElement('div');
             formContainer.innerHTML = formIndirizzo;
             button.parentNode.appendChild(formContainer);  //parentNode restituisce l'elemento HTML che contiene il bottone
@@ -192,10 +187,19 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                     alert("Non puoi lasciare il campo vuoto");
                 }else{
 
-                    // const pokemonNome = this.dataset.name;  //prendo il valore di data-name
-                    // const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome);
-                    // console.log(pokemonDaModificare);
-                    // pokemonDaModificare.indirizzo = address;
+                    const pokemonNome = this.dataset.name;  //prendo il valore di data-name
+                    const pokemonDaModificare = response.pokedex.find(pokemon => pokemon.name === pokemonNome);
+                    console.log(pokemonDaModificare);
+                    pokemonDaModificare.indirizzo = address;
+
+                    fetch(`http://localhost:3000/users/${userPokedexId}`, {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ pokedex: response.pokedex })  //una volta aggiornato il campo descrizione, aggiorno tutto l'array pokedex
+                    })
+                    .then(data =>{return data.json()})
 
                     const formEsiste = document.querySelector("#addressForm");
                     if(formEsiste){

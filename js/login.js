@@ -1,6 +1,7 @@
 const nomeInput = document.querySelector("#nome");
 const passwordInput = document.querySelector("#password");
 const login = document.querySelector("#login");
+const registrati = document.querySelector("#registrati");
 const spazioAlert = document.querySelector("#spazioAlert");
 
 fetch("http://localhost:3000/users")

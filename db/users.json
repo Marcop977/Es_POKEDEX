@@ -17,14 +17,14 @@
           "tipo": "poison",
           "descrizione": "Dopo aver assorbito sufficienti sostanze nutrienti,\nil bulbo sulla schiena sboccia in un magnifico fiore.",
           "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg",
-          "indirizzo": "Via roma, Napoli"
+          "indirizzo": "roma"
         },
         {
-          "name": "caterpie",
-          "tipo": "bug",
-          "descrizione": "Per proteggersi emette un puzzo terribile\ndall’antenna sul capo, tenendo lontani i nemici.",
-          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/10.svg",
-          "indirizzo": "Via roma, Napoli"
+          "name": "venusaur",
+          "tipo": "poison",
+          "descrizione": "Si riempie di energia grazie ai grandi petali del fiore,\nche spalanca catturando i raggi solari.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/3.svg",
+          "indirizzo": "roma"
         }
       ]
     }
