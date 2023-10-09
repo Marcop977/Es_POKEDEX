@@ -1,6 +1,8 @@
 const listaPokemon = document.querySelector("#listaPokemon");
 const alertPokedex = document.querySelector("#alertPokedex");
 const benvenuto = document.querySelector("#benvenuto");
+let userPokedex = JSON.parse(localStorage.getItem("user"));
+let userPokedexId = userPokedex.id;
 let counter = localStorage.getItem("pokemonSalvati") || 0;
 
 
@@ -61,6 +63,10 @@ fetch("https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0")
             btnAggiungi.setAttribute("class", "btn btn-default d-inline-block ms-auto");
             btnAggiungi.textContent = "Salva nel pokedex";
 
+            const btnAcquista = document.createElement("button");
+            btnAcquista.setAttribute("class", "btn btn-default d-inline-block ms-auto");
+            btnAcquista.textContent = "Acquista";
+
             btnAggiungi.addEventListener("click", function(){
                 if(counter < 3){
 
@@ -120,7 +126,56 @@ fetch("https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0")
                 console.log(counter);
             })
 
-            
+            btnAcquista.addEventListener("click", function(){
+
+                fetch(`http://localhost:3000/users/${userPokedexId}`)
+                .then(data =>{return data.json()})
+                .then(res =>{
+
+                    console.log(res);
+
+                    const utente1 = {
+                        nome: res.nome,
+                        cognome: res.password
+                    }
+                    
+                    
+                    
+                    fetch("http://localhost:9005/api/utenti", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(utente1)
+                    })
+                    .then(data =>{return data.json()})
+                    .then(res =>{
+                        console.log(res);
+                    })
+
+                    fetch("http://localhost:9005/api/ordini", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(utente1)
+                    })
+                    .then(data =>{return data.json()})
+                    .then(res =>{
+                        console.log(res);
+                    })
+
+                })
+
+
+
+
+
+
+
+            })
+
+            card.appendChild(btnAcquista)
             card.appendChild(btnAggiungi);
             listaPokemon.appendChild(card);
         })
