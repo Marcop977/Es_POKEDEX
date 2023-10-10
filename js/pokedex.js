@@ -109,7 +109,7 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                 marker = L.marker([location.y, location.x], { icon: iconaMarker }).addTo(map);  // imposta il marker sulle coordinate
                 map.setView([location.y, location.x], 13);     //imposta la mappa sulle coordinate
                 
-                const apiKey = 'd97b4d77c47e13daf78490b260c54900'; // Sostituisci con la tua chiave API
+                const apiKey = 'd97b4d77c47e13daf78490b260c54900';
                 const meteoApi = `https://api.openweathermap.org/data/2.5/weather?lat=${location.y}&lon=${location.x}&appid=${apiKey}&units=metric`;
 
                 console.log(location);
@@ -233,7 +233,7 @@ fetch(`http://localhost:3000/users/${userPokedexId}`)
                         marker = L.marker([location.y, location.x], { icon: iconaMarker }).addTo(map);  // imposta il marker sulle coordinate
                         map.setView([location.y, location.x], 13);     //imposta la mappa sulle coordinate
                         
-                        const apiKey = 'd97b4d77c47e13daf78490b260c54900'; // Sostituisci con la tua chiave API
+                        const apiKey = 'd97b4d77c47e13daf78490b260c54900'; 
                         const meteoApi = `https://api.openweathermap.org/data/2.5/weather?lat=${location.y}&lon=${location.x}&appid=${apiKey}&units=metric`;
         
                         console.log(location);

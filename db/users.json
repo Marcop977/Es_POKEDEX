@@ -2,8 +2,34 @@
   "users": [
     {
       "id": 1,
-      "nome": "aaa",
-      "password": "aaa",
+      "nome": "fsdgfsdg",
+      "password": "sdfdghfg",
+      "pokedex": []
+    },
+    {
+      "id": 2,
+      "nome": "fsdgfsdg",
+      "password": "sdfdghfg",
+      "pokedex": []
+    },
+    {
+      "id": 3,
+      "nome": "Mario",
+      "password": "Rossi",
+      "pokedex": [
+        {
+          "name": "ivysaur",
+          "tipo": "poison",
+          "descrizione": "Dopo aver assorbito sufficienti sostanze nutrienti,\nil bulbo sulla schiena sboccia in un magnifico fiore.",
+          "immagine": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/2.svg",
+          "indirizzo": "Via roma, Napoli"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "nome": "Mario",
+      "password": "Rossi",
       "pokedex": []
     }
   ]

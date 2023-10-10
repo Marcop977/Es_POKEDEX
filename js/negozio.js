@@ -1,7 +1,7 @@
 const grigliaPokemon = document.querySelector("#grigliaPokemon");
 let userPokedex = JSON.parse(localStorage.getItem("user"));
 let userPokedexId = userPokedex.id;
-
+console.log(userPokedexId);
 fetch("https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0")
 .then(data =>{return data.json()})
 .then(response =>{
@@ -52,25 +52,26 @@ fetch("https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0")
     
                                     console.log(res);
     
-                                    const utente1 = {
-                                        nome: res.nome,
-                                        cognome: res.password
-                                    }
+                                    // const utente1 = {
+                                    //     nome: res.nome,
+                                    //     cognome: res.password
+                                    // }
                                     
                                     const ordine1 = {
                                         descrizione: element.flavor_text,
-                                        nomeArticolo: pokemon.name                                      
+                                        nomeArticolo: pokemon.name,
+                                        id_utente: userPokedexId                                     
                                     }
                                     
                                     
-                                    fetch("http://localhost:9005/api/utenti", {
-                                        method: "POST",
-                                        headers: {
-                                            "Content-Type": "application/json"
-                                        },
-                                        body: JSON.stringify(utente1)
-                                    })
-                                    .then(data =>{return data.json()})
+                                    // fetch("http://localhost:9005/api/utenti", {
+                                    //     method: "POST",
+                                    //     headers: {
+                                    //         "Content-Type": "application/json"
+                                    //     },
+                                    //     body: JSON.stringify(utente1)
+                                    // })
+                                    // .then(data =>{return data.json()})
     
                                     fetch("http://localhost:9005/api/ordini", {
                                         method: "POST",
